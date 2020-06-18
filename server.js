@@ -1,17 +1,25 @@
+// Dependencies
 var express = require("express");
 var path = require("path");
-var http = require("http");
 
+// Express App
+var app = express();
 var PORT = process.env.PORT || 3000;
 
-// Create a generic function to handle requests and responses
-function handleRequest(request, response) {
-  response.end("It Works!! Path Hit: " + request.url);
-}
+app.use(express.urlencoded({ extend: true}));
+app.use(express.json());
 
-var server = http.createServer(handleRequest);
+// Data
+// =======================================
+
+
+// Routes
+// =======================================
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // Start our server
-server.listen(PORT, function() {
-  console.log("Server listening on: http://localhost:" + PORT);
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
