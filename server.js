@@ -47,7 +47,7 @@ app.get("/", function (req, res) {
 });
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
-  return res.json(reservations)
+  
 });
 app.get("/tables", function (req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
