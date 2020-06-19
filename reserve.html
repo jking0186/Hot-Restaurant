@@ -73,6 +73,35 @@
       </footer>
   
     </div>
+  <script>
     
+    $("submit").on("click", function (event) {
+      event.preventDefault();
+
+      var newReservation = {
+        name: $("#reserve-name").val().trim(),
+        phoneNumber: $("#reserve-phone").val().trim(),
+        email: $("#reserve-email").val().trim(),
+        uniqueID: $("#reserve-unique-id").val().trim(),
+
+      }
+      $.post("/api/tables", newReservation, function(data) {
+        if (data){
+          alert("You are booked!")
+        }
+
+        else {
+          alert ("You have been added to the waitlist")
+        }
+        
+        $("#reserve-name").val("");
+        $("#reserve-phone").val("");
+        $("#reserve-email").val("");
+        $("#reserve-unique-id").val("");
+
+      });
+
+    });
+
   </script>
   </body></html>
